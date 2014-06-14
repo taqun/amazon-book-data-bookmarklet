@@ -1,5 +1,6 @@
 (function(){
+  window.abdbUrl = 'http://localhost:9000/';
   var d = document, s = d.createElement('script');
-  s.src = 'http://localhost:9000/main.js';
+  s.src = window.abdbUrl + '/main.js';
   d.body.appendChild(s);
 })();
