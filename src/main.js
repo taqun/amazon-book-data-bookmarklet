@@ -8,26 +8,46 @@
   var url         = 'http://amazon.co.jp/dp/' + asin + '/';
   var imgurl      = 'http://images-jp.amazon.com/images/P/' + asin + '.09.MAIN._SX280__SCLZZZZZZZ_.jpg';
   var isKindleVer = ($('#btAsinTitle').text().indexOf('Kindle') != -1) ? true : false;
-  var price       = $('#actualPriceValue .priceLarge, #priceBlock .priceLarge').text();
 
   // title
   $('#btAsinTitle').children().remove();
   var title = $('#btAsinTitle').text();
+
+  if(!title){
+      title = $('h1#title #productTitle').text();
+  }
+
   if(isKindleVer) title = "[Kindle] " + title;
   d.title = title;
 
   // authors
   var $ad;
+  var authors;
   $('#handleBuy .buying, #divsinglecolumnminwidth .buying').each(function(){
     if($(this).children('.parseasinTitle').length == 1){
       $ad = $(this);
     }
   });
+  if($ad){
+    $ad.children('h1, input, script, .buying').remove();
+    authors = $ad.text();
+  }
+
   if(!$ad){
+    $ad = $('#byline');
+    $ad.find('.a-popover-trigger, .a-popover-preload').remove();
+    authors = $ad.text();
+  }
+
+  if(!authors){
     alert('Parse Error!');
   }
-  $ad.children('h1, input, script, .buying').remove();
-  var authors = $ad.text();
+
+  // price
+  var price = $('#actualPriceValue .priceLarge, #priceBlock .priceLarge').text();
+  if(!price){
+    price = $('#buyNewSection .a-color-price').text();
+  }
 
   // publisher
   var $pd;
