@@ -4,7 +4,8 @@
   s.src = "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
   d.body.appendChild(s);
 
-  var asin        = $('#ASIN').attr('value') || $('input[name=ASIN.0]').attr('value');
+  var asin        = $('#ASIN').attr('value') || $("input[name='ASIN.0']").attr('value');
+
   var url         = 'http://amazon.co.jp/dp/' + asin + '/';
   var imgurl      = 'http://images-jp.amazon.com/images/P/' + asin + '.09.MAIN._SX280__SCLZZZZZZZ_.jpg';
   var isKindleVer = ($('#btAsinTitle').text().indexOf('Kindle') != -1) ? true : false;
